@@ -160,5 +160,5 @@ Login with:
 
 ## 👤 Author
 
-vansh jariwale
+Vansh jariwale
 
