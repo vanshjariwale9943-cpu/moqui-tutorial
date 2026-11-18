@@ -160,4 +160,5 @@ Login with:
 
 ## 👤 Author
 
-Shivam Tripathi
+vansh jariwale
+
