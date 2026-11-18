@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-3.xsd">
+
+    <!-- Transition for Create and back to old screen -->
+    <transition name="createTutorial">
+        <service-call name="tutorial.TutorialServices.create#Tutorial"/>
+        <default-response url="."/>
+    </transition>
+
+    <!-- Backend logic -->
+    <actions>
+        <entity-find entity-name="tutorial.Tutorial" list="tutorialList">
+            <search-form-inputs/>
+        </entity-find>
+    </actions>
+
+
+    <widgets>
+        <!-- Created ddialog  -->
+        <container-dialog id="CreateTutorialDialog" button-text="Create Tutorial">
+            <form-single name="CreateTutorial" transition="createTutorial">
+                <auto-fields-entity entity-name="tutorial.Tutorial" field-type="edit"/>
+
+                <field name="submitButton">
+                    <default-field title="Create">
+                        <submit/>
+                    </default-field>
+                </field>
+            </form-single>
+        </container-dialog>
+
+
+
+        <form-list name="ListTutorials"
+                   list="tutorialList"
+                   header-dialog="true"
+                   skip-form="true">
+
+            <auto-fields-entity entity-name="tutorial.Tutorial"
+                                field-type="find-display"/>
+
+            <!-- Overriding description field -->
+            <field name="description">
+                <header-field show-order-by="true">
+                    <text-find hide-options="true"/>
+                </header-field>
+                <default-field>
+                    <display/>
+                </default-field>
+            </field>
+
+        </form-list>
+    </widgets>
+</screen>
+
+
+
+
+
+
+<!--<actions>=backend &  <widgets>=frontend-->
+<!--inside <actions> ->  <entity-find> feteches data from db with help of xml <search-form-inputs entity find one is used for only one data entity find for one or many data to fetch from db/>-->
+<!--data stored in list -->
+<!--then with help of <widgets> it is shown in UI-->
+<!--form single used for handling one record for multiple records we use form-list-->
